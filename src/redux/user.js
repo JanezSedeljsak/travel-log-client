@@ -93,52 +93,45 @@ const setSignupError = error => {
     }
 }
 
-const signIn = (userObj) => dispatch => {
-    dispatch({
-        type: SIGN_IN
-    })
-    axios({
-        method: 'post',
-        url: 'http://localhost:3000/api/user/login ',
-        data: {
-            username: userObj.username,
-            password: userObj.password
-        }
-    })
-        .then(function (response) {
-            // handle success
-            dispatch(setUser({
-                username: userObj.username,
-                jwt: response.data.jwt
-            }))
+const signIn = user => async dispatch => {
+    dispatch({ type: SIGN_IN });
+    const params = {
+        email: user.username,
+        password: user.password
+    }
 
-        })
-        .catch(function (error) {
-            // handle error
-            let errorMessage = 'Network Error'
-            if (error.response) {
-                errorMessage = error.response.data.message
-                errorMessage = errorMessage === 'WRONG_CREDENTIAL' ? 'Incorrect username or password' : errorMessage
-                //User does not exist. Sign up for an account
-            }
-            dispatch(setLoginError(errorMessage))
-        })
-        .then(function () {
-            // always executed
-        })
+    console.log(params);
+    const response = await axios({
+        method: 'post',
+        headers: {"Access-Control-Allow-Origin": "*"},
+        url: 'http://localhost:5071/api/v1/auth/login ',
+        data: params
+    });
+
+    console.log(response);
+    if (response) {
+        dispatch(setUser({
+            username: user.email,
+            jwt: response.data.token
+        }))
+    }
 }
 
 const signUp = (userObj) => dispatch => {
     dispatch({
         type: SIGN_UP
-    })
+    });
+
+    const params = {
+        email: userObj.username,
+        password: userObj.password
+    };
+    console.log(params);
+
     axios({
         method: 'post',
         url: 'http://localhost:3000/api/user/register ',
-        data: {
-            username: userObj.username,
-            password: userObj.password
-        }
+        data: params
     })
         .then(function (response) {
             // handle success

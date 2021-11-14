@@ -24,7 +24,7 @@ function Copyright() {
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
                 Your Website
-      </Link>{' '}
+            </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
         </Typography>
@@ -86,7 +86,7 @@ export default function SignIn() {
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     Sign in
-        </Typography>
+                </Typography>
                 <form className={classes.form} noValidate>
                     <TextField
                         error={isLoginError}
@@ -127,12 +127,12 @@ export default function SignIn() {
                         onClick={() => dispatch(actions.signIn(values))}
                     >
                         Sign In
-          </Button>
+                    </Button>
                     <Grid container>
                         <Grid item xs>
                             <Link href="#" variant="body2">
                                 Forgot password?
-              </Link>
+                            </Link>
                         </Grid>
                         <Grid item>
                             <Link component={RouterLink} to="/signup" variant="body2" href="#" className={classes.link}>
