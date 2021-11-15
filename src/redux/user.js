@@ -1,6 +1,5 @@
-const axios = require('axios')
+import axios from 'axios';
 
-// Actions
 const SET_USER = 'redux/users/SET_USER'
 const LOG_OUT = 'redux/users/LOG_OUT'
 const SIGN_IN = 'redux/users/SIGN_IN'
@@ -8,8 +7,6 @@ const SIGN_UP = 'redux/users/SIGN_UP'
 const SIGN_UP_COMPLETE = 'redux/users/SIGN_UP_COMPLETE'
 const SET_LOGIN_ERROR = 'redux/users/SET_LOGIN_ERROR'
 const SET_SIGNUP_ERROR = 'redux/users/SET_SIGNUP_ERROR'
-
-// Reducer
 
 const initialState = {
     profileName: null,
@@ -70,8 +67,6 @@ const currentUser = (state = initialState, action) => {
 
 export default currentUser
 
-
-// Action Creators
 const setUser = userObj => {
     return {
         type: SET_USER,
@@ -95,20 +90,17 @@ const setSignupError = error => {
 
 const signIn = user => async dispatch => {
     dispatch({ type: SIGN_IN });
-    const params = {
-        email: user.username,
-        password: user.password
-    }
 
-    console.log(params);
     const response = await axios({
         method: 'post',
         headers: {"Access-Control-Allow-Origin": "*"},
         url: 'http://localhost:5071/api/v1/auth/login ',
-        data: params
+        data: {
+            email: user.username,
+            password: user.password
+        }
     });
 
-    console.log(response);
     if (response) {
         dispatch(setUser({
             username: user.email,
@@ -117,44 +109,25 @@ const signIn = user => async dispatch => {
     }
 }
 
-const signUp = (userObj) => dispatch => {
+const signUp = user => async dispatch => {
     dispatch({
         type: SIGN_UP
     });
 
-    const params = {
-        email: userObj.username,
-        password: userObj.password
-    };
-    console.log(params);
-
-    axios({
+    const response = await axios({
         method: 'post',
-        url: 'http://localhost:3000/api/user/register ',
-        data: params
-    })
-        .then(function (response) {
-            // handle success
-            if (response.data.userId) {
-                dispatch({
-                    type: SIGN_UP_COMPLETE
-                })
-                dispatch(signIn(userObj)) //Auto login on successful register
-            }
-        })
-        .catch(function (error) {
-            // handle error
-            let errorMessage = 'Network Error'
-            if (error.response) {
-                errorMessage = error.response.data.message
-                errorMessage = errorMessage === 'USERNAME_IS_NOT_AVAILABLE' ? 'Username/Email is not available' : errorMessage
-            }
-            dispatch(setSignupError(errorMessage))
+        headers: {"Access-Control-Allow-Origin": "*"},
+        url: 'http://localhost:5071/api/v1/auth/login ',
+        data: {
+            email: user.username,
+            password: user.password
+        }
+    });
 
-        })
-        .then(function () {
-            // always executed
-        })
+    if (response) {
+        dispatch({type: SIGN_UP_COMPLETE})
+        dispatch(signIn(user))
+    }
 }
 
 const getProfile = (access_token) => {
