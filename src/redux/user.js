@@ -6,7 +6,7 @@ const SIGN_IN = 'redux/users/SIGN_IN'
 const SIGN_UP = 'redux/users/SIGN_UP'
 const SIGN_UP_COMPLETE = 'redux/users/SIGN_UP_COMPLETE'
 const SET_LOGIN_ERROR = 'redux/users/SET_LOGIN_ERROR'
-const SET_SIGNUP_ERROR = 'redux/users/SET_SIGNUP_ERROR'
+const SET_REGISTER_ERROR = 'redux/users/SET_REGISTER_ERROR'
 
 const initialState = {
     profileName: null,
@@ -54,7 +54,7 @@ const currentUser = (state = initialState, action) => {
                 isFetching: false,
                 loginError: action.payload.error
             }
-        case SET_SIGNUP_ERROR:
+        case SET_REGISTER_ERROR:
             return {
                 ...state,
                 isFetching: false,
@@ -83,7 +83,7 @@ const setLoginError = error => {
 
 const setRegisterError = error => {
     return {
-        type: SET_SIGNUP_ERROR,
+        type: SET_REGISTER_ERROR,
         payload: { error }
     }
 }
@@ -109,7 +109,7 @@ const login = user => async dispatch => {
     }
 }
 
-const signUp = user => async dispatch => {
+const register = user => async dispatch => {
     dispatch({
         type: SIGN_UP
     });
@@ -164,7 +164,7 @@ export const actions = {
     setUser,
     logOut,
     login,
-    signUp,
+    register,
     setLoginError,
     setRegisterError,
     getProfile
