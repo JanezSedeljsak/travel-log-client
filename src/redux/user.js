@@ -14,7 +14,7 @@ const initialState = {
     isFetching: false,
     jwt: null,
     loginError: null,
-    signupError: null
+    registerError: null
 }
 
 const currentUser = (state = initialState, action) => {
@@ -40,13 +40,13 @@ const currentUser = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: true,
-                signupError: null
+                registerError: null
             }
         case SIGN_UP_COMPLETE:
             return {
                 ...state,
                 isFetching: false,
-                signupError: null
+                registerError: null
             }
         case SET_LOGIN_ERROR:
             return {
@@ -58,7 +58,7 @@ const currentUser = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: false,
-                signupError: action.payload.error
+                registerError: action.payload.error
             }
         default:
             return state
@@ -81,14 +81,14 @@ const setLoginError = error => {
     }
 }
 
-const setSignupError = error => {
+const setRegisterError = error => {
     return {
         type: SET_SIGNUP_ERROR,
         payload: { error }
     }
 }
 
-const signIn = user => async dispatch => {
+const login = user => async dispatch => {
     dispatch({ type: SIGN_IN });
 
     const response = await axios({
@@ -126,7 +126,7 @@ const signUp = user => async dispatch => {
 
     if (response) {
         dispatch({type: SIGN_UP_COMPLETE})
-        dispatch(signIn(user))
+        dispatch(login(user))
     }
 }
 
@@ -163,9 +163,9 @@ const logOut = () => {
 export const actions = {
     setUser,
     logOut,
-    signIn,
+    login,
     signUp,
     setLoginError,
-    setSignupError,
+    setRegisterError,
     getProfile
 }
