@@ -21,7 +21,7 @@ export default () => {
     if (isLoggedIn) return <Redirect to="/" />
 
     return (
-        <div class="basic-form-container">
+        <div className="basic-form-container">
             <h1>Register now!</h1>
             <Form
                 name="basic"

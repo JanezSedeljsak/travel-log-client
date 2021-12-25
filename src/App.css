@@ -6,7 +6,7 @@
   --dark: #222;
   --shadow: #6b696965;
   --primary-blue: #3c71b6;
-  --default-back: #dfe6e9;
+  --default-back: #e9f3f7;
   --form-back: #fafafa8a;
 }
 
@@ -36,6 +36,10 @@ body {
   border-radius: 8px;
   outline: none !important;
   border: none !important;
+}
+
+.ant-list {
+  width: 100%;
 }
 
 #container-with-background {

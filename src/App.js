@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
 import Login from './Containers/Forms/Login';
 import Register from './Containers/Forms/Register';
 import TripForm from './Containers/Forms/Trip';
@@ -14,6 +14,7 @@ import './App.css';
 
 export default function App() {
   const isAuth = useSelector(state => state.user.isLoggedIn && state.user.jwt !== null)
+  const location = useLocation()
 
   const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
@@ -28,10 +29,10 @@ export default function App() {
       <Header isAuth={isAuth} />
       <Switch>
         <Route path='/' component={Public} exact />
-        <div id="container-with-background">
+        {['/login', '/register'].includes(location.pathname) && <div id="container-with-background">
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-        </div>
+        </div>}
         <Layout.Content>
           <Route path="/popular-destinations" component={Descriptions} />
           <PrivateRoute path='/create/trip' component={TripForm} />
