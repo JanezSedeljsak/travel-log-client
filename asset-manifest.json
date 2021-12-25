@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/travel-log-service-client/static/css/main.b760772d.chunk.css",
+    "main.js": "/travel-log-service-client/static/js/main.7552df67.chunk.js",
+    "main.js.map": "/travel-log-service-client/static/js/main.7552df67.chunk.js.map",
+    "runtime-main.js": "/travel-log-service-client/static/js/runtime-main.99e66638.js",
+    "runtime-main.js.map": "/travel-log-service-client/static/js/runtime-main.99e66638.js.map",
+    "static/css/2.8bd6500c.chunk.css": "/travel-log-service-client/static/css/2.8bd6500c.chunk.css",
+    "static/js/2.c209117f.chunk.js": "/travel-log-service-client/static/js/2.c209117f.chunk.js",
+    "static/js/2.c209117f.chunk.js.map": "/travel-log-service-client/static/js/2.c209117f.chunk.js.map",
+    "index.html": "/travel-log-service-client/index.html",
+    "static/css/2.8bd6500c.chunk.css.map": "/travel-log-service-client/static/css/2.8bd6500c.chunk.css.map",
+    "static/css/main.b760772d.chunk.css.map": "/travel-log-service-client/static/css/main.b760772d.chunk.css.map",
+    "static/js/2.c209117f.chunk.js.LICENSE.txt": "/travel-log-service-client/static/js/2.c209117f.chunk.js.LICENSE.txt",
+    "static/media/banner.facae160.jpg": "/travel-log-service-client/static/media/banner.facae160.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.99e66638.js",
+    "static/css/2.8bd6500c.chunk.css",
+    "static/js/2.c209117f.chunk.js",
+    "static/css/main.b760772d.chunk.css",
+    "static/js/main.7552df67.chunk.js"
+  ]
+}
