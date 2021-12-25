@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { List, Avatar } from 'antd';
-import { loadDestinations } from '../api';
+import { loadTrips } from '../api';
+import moment from 'moment';
 
 export default () => {
-    const [destinations, setDestinations] = useState([]);
+    const [trips, setTrips] = useState([]);
+
     useEffect(() => {
         fetchData();
     }, []);
     
     async function fetchData() {
-        setDestinations(await loadDestinations());
+        const trips = await loadTrips();
+        setTrips(trips);
     }
 
     return (
         <List
             itemLayout="horizontal"
-            dataSource={destinations}
-            renderItem={item => (
+            dataSource={trips}
+            renderItem={trip => (
                 <List.Item>
                     <List.Item.Meta
                         avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                        title={<a href="https://ant.design">{item.destination}</a>}
-                        description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                        title={trip.destination}
+                        description={`${trip.tripName} - ${moment(trip.tripDate, "YYYYMMDD").fromNow()}`}
                     />
                 </List.Item>
             )}
