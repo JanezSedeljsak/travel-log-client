@@ -7,7 +7,7 @@ import { Form, Input, Button } from 'antd'
 export default () => {
     const isLoggedIn = useSelector(state => state.user.isLoggedIn && state.user.jwt !== null);
     const registerError = useSelector(state => state.user.registerError);
-    const isRegisterError = registerError ? true : false;
+    const isRegisterError = !!registerError;
     const dispatch = useDispatch();
 
     function registerFinish(values) {
@@ -18,15 +18,15 @@ export default () => {
         dispatch(actions.logOut()) //reset state and clear any errors
     }, [dispatch]);
 
-    if (isLoggedIn) return <Redirect to="/Home" />
+    if (isLoggedIn) return <Redirect to="/" />
 
     return (
         <div class="basic-form-container">
+            <h1>Register now!</h1>
             <Form
                 name="basic"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
-                onFinish={registerFinish/*() => dispatch(actions.login(values))*/}
+                layout="vertical"
+                onFinish={registerFinish}
                 onFinishFailed={() => console.log("errr")}
                 autoComplete="off"
             >
@@ -46,13 +46,12 @@ export default () => {
                     <Input.Password />
                 </Form.Item>
 
-                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                <Form.Item>
                     <Button type="primary" htmlType="submit">
                         Submit
                     </Button>
                 </Form.Item>
             </Form>
-
         </div>
 
     )

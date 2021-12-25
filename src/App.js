@@ -26,18 +26,20 @@ export default function App() {
   return (
     <Layout>
       <Header isAuth={isAuth} />
-      <Layout.Content>
-        <Switch>
-          <Route path='/' component={Public} exact />
+      <Switch>
+        <Route path='/' component={Public} exact />
+        <div id="container-with-background">
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+        </div>
+        <Layout.Content>
           <Route path="/popular-destinations" component={Descriptions} />
           <PrivateRoute path='/create/trip' component={TripForm} />
           <PrivateRoute path='/edit/trip/:id' component={TripForm} />
           <PrivateRoute path='/profile' component={ProfileForm} />
           <PrivateRoute path='/my-trips' component={MyTrips} />
-        </Switch>
-      </Layout.Content>
+        </Layout.Content>
+      </Switch>
     </Layout>
   )
 }
