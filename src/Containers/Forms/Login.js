@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, Link as RouterLink } from 'react-router-dom'
 import { actions } from '../../redux/user'
-import { Form, Input, Button, Checkbox } from 'antd'
+import { Form, Input, Button } from 'antd'
 
 export default () => {
     const isLoggedIn = useSelector(state => state.user.isLoggedIn && state.user.jwt !== null)

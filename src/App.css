@@ -9,6 +9,10 @@
   --default-back: #dfe6e9;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 body {
   background-color: var(--default-back);
   filter: blur(100%);
@@ -67,7 +71,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: var(--default-back);
-  min-height: 200px;
+  min-height: 60vh;
   -webkit-box-shadow: 0 -4px 4px -2px var(--dark);
   -moz-box-shadow: 0 -4px 4px -2px var(--dark);
   box-shadow: 0 -4px 4px -2px var(--dark);
@@ -80,6 +84,7 @@ body {
   height: fit-content;
   transform: translateY(-50%);
   border-radius: 3px;
+  top: 0px;
 }
 
 #about-us-title h1 {
@@ -89,15 +94,15 @@ body {
 }
 
 #about-us-content:last-child {
-    margin-bottom: 50px !important;
+  margin-bottom: 50px !important;
 }
 
-.qoute {
+.quote {
   text-align: justify;
-  margin-left: 20%;
-  width: 60%;
+  margin-left: 10%;
+  width: 80%;
   font-size: 1.1rem;
-  font-family: "Staatliches", cursive;
+  font-family: "Roboto", sans-serif;
   color: var(--dark);
 }
 
@@ -111,7 +116,7 @@ header,
 }
 
 .ant-layout-content {
-    margin-top: 50px !important;
+  margin-top: 50px !important;
 }
 
 header {
@@ -133,7 +138,6 @@ ul {
   align-items: center;
   padding: 50px;
   margin: 10px;
-  background-color: var(--white);
 }
 
 .ant-menu-horizontal {
