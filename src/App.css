@@ -121,6 +121,15 @@ body {
   margin-bottom: 50px !important;
 }
 
+#waves {
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  transform: scaleY(0.45) scaleX(1.2) translateY(-62%);
+  -webkit-filter: drop-shadow(3px 3px 2px var(--dark));
+  filter: drop-shadow(3px 3px 2px var(--dark));
+}
+
 .quote {
   text-align: justify;
   margin-left: 15%;
@@ -147,7 +156,7 @@ header {
   z-index: 10;
   width: 100%;
   padding: 0 !important;
-  background-color: var(--primary-blue) !important;
+  background-color: transparent;
   position: fixed;
 }
 

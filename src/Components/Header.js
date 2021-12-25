@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Layout } from 'antd';
 import { Menu } from 'antd';
 import { actions } from '../redux/user';
+import Waves from "./Waves";
 
 export default ({ isAuth }) => {
     const history = useHistory();
@@ -84,8 +85,11 @@ export default ({ isAuth }) => {
     }
 
     return (
+        <>
         <Layout.Header>
             {buildNav()}
         </Layout.Header>
+        <Waves/>
+        </>
     );
 };
