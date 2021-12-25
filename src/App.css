@@ -71,6 +71,15 @@ ul {
   color: var(--dark) !important;
 }
 
+.basic-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    margin: 10px;
+    background-color: var(--white);
+}
+
 .ant-menu-horizontal {
     border-bottom: 1px solid var(--dark);
 }

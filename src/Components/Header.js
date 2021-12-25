@@ -1,16 +1,30 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import { Layout } from 'antd';
 import { Menu } from 'antd';
+import { actions } from '../redux/user';
 
 export default ({ isAuth }) => {
     const history = useHistory();
+    const dispatch = useDispatch();
+
     const [menuItem, setMenuItem]= useState('/');
     const isAdmin = isAuth && false;
 
     function routeChange(route) {
-        setMenuItem(route);
-        history.push(`/${route}`);
+        switch (route) {
+            case 'logout':
+                dispatch(actions.logOut());
+                return;
+            case 'get-suggestion':
+                alert("<<location suggestion popup>>");
+                return;
+            default:
+                setMenuItem(route);
+                history.push(`/${route}`);
+                return;
+        }
     }
 
     const common = {
