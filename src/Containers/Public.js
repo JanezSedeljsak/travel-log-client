@@ -1,10 +1,15 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React from 'react';
+import PaperPlane from '../Components/PaperPlane';
 
 export default () => {
     return (
-        <div>
-            Landing page
-        </div>
+        <>
+            <div id="landing">
+                <h1>Welcome to Travel Log</h1>
+                <p>~ Pass on the beautiful memories you've made around the world ~</p>
+                <PaperPlane />
+            </div>
+        </>
+
     )
 }

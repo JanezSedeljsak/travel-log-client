@@ -27,6 +27,12 @@ export default () => {
     if (isLoggedIn) return <Redirect to="/Home" />
 
     return (
-        <div>login form</div>
+        <div>
+            <div bp="grid 4">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+            </div>
+        </div>
     )
 }
