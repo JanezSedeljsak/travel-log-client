@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, Link as RouterLink } from 'react-router-dom'
-import { actions } from '../redux/user'
+import { actions } from '../../redux/user'
 
 export default () => {
     const isLoggedIn = useSelector(state => state.user.isLoggedIn && state.user.jwt !== null)
@@ -28,11 +28,7 @@ export default () => {
 
     return (
         <div>
-            <div bp="grid 4">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-            </div>
+            login form
         </div>
     )
 }
