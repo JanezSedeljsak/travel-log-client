@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { login as fetchLogin, register as fetchRegister } from '../api';
 
 const SET_USER = 'redux/users/SET_USER'
 const LOG_OUT = 'redux/users/LOG_OUT'
@@ -22,7 +22,7 @@ const currentUser = (state = initialState, action) => {
         case SET_USER:
             return {
                 ...state,
-                profileName: action.payload.username,
+                profileName: action.payload.email,
                 isLoggedIn: true,
                 isFetching: false,
                 jwt: action.payload.jwt,
@@ -91,19 +91,10 @@ const setRegisterError = error => {
 const login = user => async dispatch => {
     dispatch({ type: SIGN_IN });
 
-    const response = await axios({
-        method: 'post',
-        headers: {"Access-Control-Allow-Origin": "*"},
-        url: 'http://localhost:5071/api/v1/auth/login ',
-        data: {
-            email: user.username,
-            password: user.password
-        }
-    });
-
+    const response = await fetchLogin(user);
     if (response) {
         dispatch(setUser({
-            username: user.email,
+            email: user.email,
             jwt: response.data.token
         }))
     }
@@ -114,44 +105,11 @@ const register = user => async dispatch => {
         type: SIGN_UP
     });
 
-    const response = await axios({
-        method: 'post',
-        headers: {"Access-Control-Allow-Origin": "*"},
-        url: 'http://localhost:5071/api/v1/auth/login ',
-        data: {
-            email: user.username,
-            password: user.password
-        }
-    });
-
+    const response = await fetchRegister(user);
     if (response) {
         dispatch({type: SIGN_UP_COMPLETE})
         dispatch(login(user))
     }
-}
-
-const getProfile = (access_token) => {
-    axios({
-        method: 'get',
-        url: 'http://localhost:3000/api/user/me ',
-        headers: {
-            'Authorization': 'Bearer ' + access_token,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    })
-        .then(function (response) {
-            // handle success
-            console.log(response)
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error.response)
-
-        })
-        .then(function () {
-            // always executed
-        })
 }
 
 const logOut = () => {
@@ -166,6 +124,5 @@ export const actions = {
     login,
     register,
     setLoginError,
-    setRegisterError,
-    getProfile
+    setRegisterError
 }

@@ -6,12 +6,10 @@ import { Form, Input, Button } from 'antd'
 
 export default () => {
     const isLoggedIn = useSelector(state => state.user.isLoggedIn && state.user.jwt !== null);
-    const registerError = useSelector(state => state.user.registerError);
-    const isRegisterError = !!registerError;
     const dispatch = useDispatch();
 
     function registerFinish(values) {
-        
+        dispatch(actions.register(values));
     }
 
     useEffect(() => {
@@ -31,24 +29,30 @@ export default () => {
                 autoComplete="off"
             >
                 <Form.Item
-                    label="Username"
-                    name="username"
+                    label="Full name"
+                    name="fullname"
+                    rules={[{ required: true, message: 'Please input your full name!' }]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Email"
+                    name="email"
                     rules={[{ required: true, message: 'Please input your username!' }]}
                 >
                     <Input />
                 </Form.Item>
-
                 <Form.Item
                     label="Password"
                     name="password"
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
-                    <Input.Password />
+                    <Input.Password autoComplete="new-password" />
                 </Form.Item>
 
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        Register
                     </Button>
                 </Form.Item>
             </Form>

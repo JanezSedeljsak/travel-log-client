@@ -5,10 +5,8 @@ import { actions } from '../../redux/user'
 import { Form, Input, Button } from 'antd'
 
 export default () => {
-    const isLoggedIn = useSelector(state => state.user.isLoggedIn && state.user.jwt !== null)
-    const loginError = useSelector(state => state.user.loginError)
-    const isLoginError = !!loginError;
-    const dispatch = useDispatch()
+    const isLoggedIn = useSelector(state => state.user.isLoggedIn && state.user.jwt !== null);
+    const dispatch = useDispatch();
 
     const loginFinish = values => {
         dispatch(actions.login(values));
@@ -31,8 +29,8 @@ export default () => {
                 autoComplete="off"
             >
                 <Form.Item
-                    label="Username"
-                    name="username"
+                    label="Email"
+                    name="email"
                     rules={[{ required: true, message: 'Please input your username!' }]}
                 >
                     <Input />
@@ -48,7 +46,7 @@ export default () => {
 
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        Login
                     </Button>
                 </Form.Item>
             </Form>

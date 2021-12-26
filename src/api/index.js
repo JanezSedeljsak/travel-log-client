@@ -3,15 +3,6 @@ import axios from "axios";
 // if development mode use another separate server for api
 const _API_ = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') ? 'http://localhost:5071' : '';
 
-axios.interceptors.response.use(response => {
-    return response;
- }, error => {
-   if (error.response.status === 401) {
-       window.location = '/login?status=401';
-   }
-   return error;
-});
-
 const getRequest = async (route, jwt = null, alt = []) => {
     const response = await axios({
         method: 'get',
@@ -43,4 +34,37 @@ export async function loadMembers() {
 
 export async function loadMyTrips(jwt) {
     return await getRequest('my-trips', jwt);
+}
+
+export async function loadProfile(jwt) {
+    return await getRequest('my-profile', jwt);
+}
+
+export async function login(credentials) {
+    const response = await axios({
+        method: 'post',
+        headers: {"Access-Control-Allow-Origin": "*"},
+        url: `${_API_}/api/v1/auth/login`,
+        data: {
+            email: credentials.email,
+            password: credentials.password
+        }
+    });
+
+    return response;
+}
+
+export async function register(credentials) {
+    const response = await axios({
+        method: 'post',
+        headers: {"Access-Control-Allow-Origin": "*"},
+        url: `${_API_}/api/v1/auth/register`,
+        data: {
+            fullname: credentials.fullname,
+            email: credentials.email,
+            password: credentials.password
+        }
+    });
+
+    return response;
 }

@@ -161,16 +161,32 @@ header,
   background: transparent !important;
 }
 
-.ant-layout-content, #container-with-background {
+.ant-layout-content {
+  margin-top: 120px !important;
+  z-index: 999;
+}
+
+#container-with-background {
   padding-top: 120px !important;
+  z-index: 4;
 }
 
 header {
   z-index: 10;
   width: 100%;
   padding: 0 !important;
-  background-color: transparent;
+  background-color: transparent !important;
   position: fixed;
+}
+
+.ant-form-horizontal {
+  width: 100%;
+  padding: 20px 0 0 0;
+  background-color: var(--form-back);
+  border-radius: 8px;
+  -webkit-box-shadow: 0 4px 4px -2px var(--dark);
+  -moz-box-shadow: 0 4px 4px -2px var(--dark);
+  box-shadow: 0 4px 4px -2px var(--dark);
 }
 
 ul {
@@ -192,7 +208,6 @@ ul {
   -moz-box-shadow: 0 4px 4px -2px var(--dark);
   box-shadow: 0 4px 4px -2px var(--dark);
   border-bottom: 14px solid var(--primary-blue);
-  transform: translateY(-100px);
 }
 
 .basic-form-container > form {
