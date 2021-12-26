@@ -35,10 +35,10 @@ export default function App() {
         </div>}
         <Layout.Content>
           <Route path='/trips' component={Trips} />
+          <Route path="/members" component={Members} />
           <PrivateRoute path='/create/trip' component={TripForm} />
           <PrivateRoute path='/edit/trip/:id' component={TripForm} />
-          <PrivateRoute path='/profile' component={ProfileForm} />
-          <PrivateRoute path="/members" component={Members} />
+          <PrivateRoute path='/profile' component={ProfileForm} />   
         </Layout.Content>
       </Switch>
     </Layout>

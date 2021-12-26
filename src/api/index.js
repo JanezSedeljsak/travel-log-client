@@ -26,17 +26,21 @@ const getRequest = async (route, jwt = null, alt = []) => {
 }
 
 export async function loadTopDestinations() {
-    return await getRequest('popular-destinations');
+    return await getRequest('stats/popular-destinations');
+}
+
+export async function loadMostActiveuMembers() {
+    return await getRequest('stats/active-users');
 }
 
 export async function loadTrips() {
     return await getRequest('trips');
 }
 
-export async function loadMyTrips(jwt) {
-    return await getRequest('my-trips', jwt);
+export async function loadMembers() {
+    return await getRequest('users');
 }
 
-export async function loadMembers(jwt) {
-    return await getRequest('users', jwt);
+export async function loadMyTrips(jwt) {
+    return await getRequest('my-trips', jwt);
 }

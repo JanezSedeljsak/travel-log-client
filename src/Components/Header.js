@@ -31,13 +31,13 @@ export default ({ isAuth }) => {
     const common = {
         left: {
             '': 'Home',
-            'trips': 'Recent trips'
+            'trips': 'Recent trips',
+            'members': 'Members'
         }
     }
 
     const auth = {
         left: {
-            'members': 'Members',
             'create/trip': 'Add trip',
             'get-suggestion': 'Get suggestion'
         }, right: {
