@@ -45,10 +45,7 @@ export async function login(credentials) {
         method: 'post',
         headers: {"Access-Control-Allow-Origin": "*"},
         url: `${_API_}/api/v1/auth/login`,
-        data: {
-            email: credentials.email,
-            password: credentials.password
-        }
+        data: credentials
     });
 
     return response;
@@ -59,11 +56,21 @@ export async function register(credentials) {
         method: 'post',
         headers: {"Access-Control-Allow-Origin": "*"},
         url: `${_API_}/api/v1/auth/register`,
-        data: {
-            fullname: credentials.fullname,
-            email: credentials.email,
-            password: credentials.password
-        }
+        data: credentials
+    });
+
+    return response;
+}
+
+export async function profileUpdate(credentials, jwt) {
+    const response = await axios({
+        method: 'put',
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            ...(jwt ? {'Authorization': `Bearer ${jwt}`} : {})
+        },
+        url: `${_API_}/api/v1/user/${credentials.id}`,
+        data: credentials
     });
 
     return response;

@@ -1,9 +1,16 @@
-import { login as fetchLogin, register as fetchRegister } from '../api';
+import {
+    login as fetchLogin,
+    register as fetchRegister,
+    profileUpdate as fetchProfileUpdate
+} from '../api';
 
 const SET_USER = 'redux/users/SET_USER'
 const LOG_OUT = 'redux/users/LOG_OUT'
 const SIGN_IN = 'redux/users/SIGN_IN'
 const SIGN_UP = 'redux/users/SIGN_UP'
+const PROFILE_UPDATE = 'redux/users/PROFILE_UPDATE'
+const PROFILE_UPDATE_COMPLETE = 'redux/users/PROFILE_UPDATE'
+const PROFILE_UPDATE_ERROR = 'redux/users/PROFILE_ERROR'
 const SIGN_UP_COMPLETE = 'redux/users/SIGN_UP_COMPLETE'
 const SET_LOGIN_ERROR = 'redux/users/SET_LOGIN_ERROR'
 const SET_REGISTER_ERROR = 'redux/users/SET_REGISTER_ERROR'
@@ -14,7 +21,8 @@ const initialState = {
     isFetching: false,
     jwt: null,
     loginError: null,
-    registerError: null
+    registerError: null,
+    profileUpdateError: null
 }
 
 const currentUser = (state = initialState, action) => {
@@ -59,6 +67,25 @@ const currentUser = (state = initialState, action) => {
                 ...state,
                 isFetching: false,
                 registerError: action.payload.error
+            }
+        case PROFILE_UPDATE:
+            return {
+                ...state,
+                isFetching: true,
+                profileUpdateError: null
+            }
+        case PROFILE_UPDATE_COMPLETE:
+            return {
+                ...state,
+                isFetching: false,
+                profileUpdateError: null
+            }
+        case PROFILE_UPDATE_COMPLETE:
+            return {
+                ...state,
+                isFetching: false,
+                profileName: action.payload.email,
+                profileUpdateError: null
             }
         default:
             return state
@@ -107,8 +134,21 @@ const register = user => async dispatch => {
 
     const response = await fetchRegister(user);
     if (response) {
-        dispatch({type: SIGN_UP_COMPLETE})
+        dispatch({ type: SIGN_UP_COMPLETE })
         dispatch(login(user))
+    }
+}
+
+const updatePorfile = (user, jwt) => async dispatch => {
+    dispatch({
+        type: PROFILE_UPDATE
+    });
+
+    const reponse = await fetchProfileUpdate(user, jwt);
+    if (reponse) {
+        dispatch({ type: PROFILE_UPDATE_COMPLETE, payload: { email: user.email } });
+    } else {
+        dispatch({ type: PROFILE_UPDATE_ERROR })
     }
 }
 
@@ -124,5 +164,6 @@ export const actions = {
     login,
     register,
     setLoginError,
-    setRegisterError
+    setRegisterError,
+    updatePorfile
 }

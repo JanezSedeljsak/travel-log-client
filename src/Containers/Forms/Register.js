@@ -25,7 +25,7 @@ export default () => {
                 name="basic"
                 layout="vertical"
                 onFinish={registerFinish}
-                onFinishFailed={() => console.log("errr")}
+                onFinishFailed={() => alert("error in form")}
                 autoComplete="off"
             >
                 <Form.Item
