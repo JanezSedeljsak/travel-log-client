@@ -1,30 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import { List, Avatar } from 'antd';
+import { List, Avatar, Input, Button, Tooltip } from 'antd';
 import { loadMembers } from '../api';
+import { ExpandAltOutlined } from '@ant-design/icons';
+
+const { Search } = Input;
 
 export default () => {
     const [members, setMembers] = useState([]);
+    const [membersForDisplay, setMembersForDisplay] = useState([]);
     useEffect(() => {
         fetchData();
     }, []);
-    
+
     async function fetchData() {
-        setMembers(await loadMembers());
+        const members = await loadMembers();
+        setMembers(members);
+        setMembersForDisplay(members)
+    }
+
+    function onSearch(value) {
+        setMembersForDisplay(members.filter(member => member.fullName.toLowerCase().includes(value.toLowerCase())));
     }
 
     return (
-        <List
-            itemLayout="horizontal"
-            dataSource={members}
-            renderItem={member => (
-                <List.Item>
-                    <List.Item.Meta
-                        avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                        title={member.fullName}
-                        description={member.email}
-                    />
-                </List.Item>
-            )}
-        />
+        <div className="w-100">
+            <Search placeholder="Filter members by name" allowClear onSearch={onSearch} style={{ width: '100%' }} />
+            <List
+                itemLayout="horizontal"
+                dataSource={membersForDisplay}
+                renderItem={member => (
+                    <List.Item
+                        actions={[<Tooltip title="View detail">
+                            <Button type="primary" shape="circle" icon={<ExpandAltOutlined />} size="large" />
+                        </Tooltip>]}
+                    >
+                        <List.Item.Meta
+                            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+                            title={member.fullName}
+                            description={member.email}
+                        />
+                    </List.Item>
+                )}
+            />
+        </div>
     )
 }

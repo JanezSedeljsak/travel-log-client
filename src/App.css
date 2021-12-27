@@ -189,10 +189,18 @@ header {
   box-shadow: 0 4px 4px -2px var(--dark);
 }
 
-ul {
+ul:not(.ant-list-items) {
   width: 70% !important;
   background: transparent !important;
   color: var(--white) !important;
+}
+
+.ant-list-item-action {
+  text-align: right;
+}
+
+.w-100 {
+  width: 100%;
 }
 
 .basic-form-container {
