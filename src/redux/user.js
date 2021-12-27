@@ -9,8 +9,8 @@ const LOG_OUT = 'redux/users/LOG_OUT'
 const SIGN_IN = 'redux/users/SIGN_IN'
 const SIGN_UP = 'redux/users/SIGN_UP'
 const PROFILE_UPDATE = 'redux/users/PROFILE_UPDATE'
-const PROFILE_UPDATE_COMPLETE = 'redux/users/PROFILE_UPDATE'
-const PROFILE_UPDATE_ERROR = 'redux/users/PROFILE_ERROR'
+const PROFILE_UPDATE_COMPLETE = 'redux/users/PROFILE_UPDATE_COMPLETE'
+const PROFILE_UPDATE_ERROR = 'redux/users/PROFILE_UPDATE_ERROR'
 const SIGN_UP_COMPLETE = 'redux/users/SIGN_UP_COMPLETE'
 const SET_LOGIN_ERROR = 'redux/users/SET_LOGIN_ERROR'
 const SET_REGISTER_ERROR = 'redux/users/SET_REGISTER_ERROR'
@@ -80,7 +80,7 @@ const currentUser = (state = initialState, action) => {
                 isFetching: false,
                 profileUpdateError: null
             }
-        case PROFILE_UPDATE_COMPLETE:
+        case PROFILE_UPDATE_ERROR:
             return {
                 ...state,
                 isFetching: false,

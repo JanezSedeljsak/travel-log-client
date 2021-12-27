@@ -7,7 +7,8 @@ import { Form, Input, Button, Select } from 'antd';
 
 export default () => {
     const dispatch = useDispatch();
-    const jwt = useSelector(state => state.user.jwt)
+    const jwt = useSelector(state => state.user.jwt);
+    const isLoading = useSelector(state => state.user.isFetching == true);
     const [profileData, setProfileData] = useState({});
     useEffect(() => {
         fetchData();
@@ -79,7 +80,7 @@ export default () => {
             </Form.Item>
             <Form.Item label=" ">
                 <Button type="primary" htmlType="submit">
-                    Update profile
+                    {isLoading ? "Loading..." : "Update profile"}
                 </Button>
             </Form.Item>
         </Form>
