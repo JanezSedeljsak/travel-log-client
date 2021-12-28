@@ -16,7 +16,7 @@ const SET_LOGIN_ERROR = 'redux/users/SET_LOGIN_ERROR'
 const SET_REGISTER_ERROR = 'redux/users/SET_REGISTER_ERROR'
 
 const initialState = {
-    profileName: null,
+    email: null,
     isLoggedIn: false,
     isFetching: false,
     jwt: null,
@@ -30,7 +30,7 @@ const currentUser = (state = initialState, action) => {
         case SET_USER:
             return {
                 ...state,
-                profileName: action.payload.email,
+                email: action.payload.email,
                 isLoggedIn: true,
                 isFetching: false,
                 jwt: action.payload.jwt,
@@ -78,14 +78,14 @@ const currentUser = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: false,
+                email: action.payload.email,
                 profileUpdateError: null
             }
         case PROFILE_UPDATE_ERROR:
             return {
                 ...state,
                 isFetching: false,
-                profileName: action.payload.email,
-                profileUpdateError: null
+                profileUpdateError: true
             }
         default:
             return state

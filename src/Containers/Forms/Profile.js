@@ -8,7 +8,7 @@ import { Form, Input, Button, Select } from 'antd';
 export default () => {
     const dispatch = useDispatch();
     const jwt = useSelector(state => state.user.jwt);
-    const isLoading = useSelector(state => state.user.isFetching == true);
+    const isLoading = useSelector(state => state.user.isFetching === true);
     const [profileData, setProfileData] = useState({});
     useEffect(() => {
         fetchData();

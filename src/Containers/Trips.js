@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import moment from 'moment';
-import { List, Avatar, Input, Button, Tooltip } from 'antd';
+import { List, Avatar, Input, Button, Tooltip, Switch } from 'antd';
 import { loadTrips } from '../api';
 import { ExpandAltOutlined } from '@ant-design/icons';
 
 const { Search } = Input;
 
 export default () => {
+    const usrEmail = useSelector(state => state.user.email);
     const [trips, setTrips] = useState([]);
     const [tripsForDisplay, setTripsForDisplay] = useState([]);
+    const [viewAllTrips, setViewAllTrips] = useState(true);
+    const [filterText, setFilterText] = useState("");
 
     useEffect(() => {
         fetchData();
@@ -20,13 +24,34 @@ export default () => {
         setTripsForDisplay(trips);
     }
 
-    function onSearch(value) {
-        setTripsForDisplay(trips.filter(trip => trip.tripName.toLowerCase().includes(value.toLowerCase())));
+    function updateVisibleTrips(filtrTxt, viewTrips) {
+        const tmpTrips = trips.filter(trip => {
+            const containsFilterTxt = trip.tripName.toLowerCase().includes(filtrTxt.toLowerCase());
+            debugger;
+            const showTrip = viewTrips || trip.userList.some(user => user.email === usrEmail);
+            return containsFilterTxt && showTrip;
+        });
+
+        setTripsForDisplay(tmpTrips);
+    }
+
+    function changeFilterText(val) {
+        setFilterText(val);
+        updateVisibleTrips(val, viewAllTrips);
+    }
+
+    function changeViewAllTrips(val) {
+        setViewAllTrips(val);
+        updateVisibleTrips(filterText, val);
     }
 
     return (
         <div className="w-100">
-            <Search placeholder="Filter trips by title" allowClear onSearch={onSearch} style={{ width: '100%' }} />
+            <div style={{ marginBottom: 10 }}>
+                <span>{"Toggle all trips:  "}</span>
+                <Switch size="small" checked={viewAllTrips} onChange={changeViewAllTrips} />
+            </div>
+            <Search placeholder="Filter trips by title" allowClear onSearch={changeFilterText} style={{ width: '100%' }} />
             <List
                 itemLayout="horizontal"
                 dataSource={tripsForDisplay}
