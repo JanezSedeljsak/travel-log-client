@@ -1,17 +1,15 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Layout } from 'antd';
 import { Menu } from 'antd';
 import { actions } from '../redux/user';
 import Waves from "./Waves";
 
-export default ({ isAuth }) => {
+export default ({ isAuth, isAdmin }) => {
     const history = useHistory();
     const dispatch = useDispatch();
-
     const [menuItem, setMenuItem]= useState('/');
-    const isAdmin = isAuth && false;
 
     function routeChange(route) {
         switch (route) {
@@ -55,13 +53,14 @@ export default ({ isAuth }) => {
 
     const admin = {
         left: {
-
+            'dashboard': 'Dashboard'
         }
     };
 
     function buildNav() {
-        const leftNav = { ...common.left, ...(isAuth ? auth.left : annyonymous.left), ...(isAdmin ? admin.left : []) };
-        const rightNav = { ...common.right, ...(isAuth ? auth.right : annyonymous.right), ...(isAdmin ? admin.right : []) };
+        console.log(isAdmin, admin.left);
+        const leftNav = { ...(isAdmin ? admin.left : []), ...common.left, ...(isAuth ? auth.left : annyonymous.left) };
+        const rightNav = { ...(isAdmin ? admin.right : []), ...common.right, ...(isAuth ? auth.right : annyonymous.right) };
 
         return (
             <Menu mode="horizontal" selectedKeys={menuItem} mode="horizontal" onClick={(e) => routeChange(e.key)}>

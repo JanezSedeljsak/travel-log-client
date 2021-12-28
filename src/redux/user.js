@@ -20,6 +20,7 @@ const initialState = {
     isLoggedIn: false,
     isFetching: false,
     jwt: null,
+    isAdmin: false,
     loginError: null,
     registerError: null,
     profileUpdateError: null
@@ -34,6 +35,7 @@ const currentUser = (state = initialState, action) => {
                 isLoggedIn: true,
                 isFetching: false,
                 jwt: action.payload.jwt,
+                isAdmin: action.payload.isAdmin,
                 loginError: null
             }
         case LOG_OUT:
@@ -122,8 +124,9 @@ const login = user => async dispatch => {
     if (response) {
         dispatch(setUser({
             email: user.email,
-            jwt: response.data.token
-        }))
+            jwt: response.data.token,
+            isAdmin: response.data.isAdmin
+        }));
     }
 }
 

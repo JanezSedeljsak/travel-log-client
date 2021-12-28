@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PaperPlane from '../Components/PaperPlane';
+import PaperPlane from '../components/PaperPlane';
 import Banner from './../assets/banner.jpg';
 import { loadMostActiveuMembers, loadTopDestinations } from '../api';
 import { Row, Col, List, Avatar } from 'antd';

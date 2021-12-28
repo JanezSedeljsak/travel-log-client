@@ -27,7 +27,6 @@ export default () => {
     function updateVisibleTrips(filtrTxt, viewTrips) {
         const tmpTrips = trips.filter(trip => {
             const containsFilterTxt = trip.tripName.toLowerCase().includes(filtrTxt.toLowerCase());
-            debugger;
             const showTrip = viewTrips || trip.userList.some(user => user.email === usrEmail);
             return containsFilterTxt && showTrip;
         });
