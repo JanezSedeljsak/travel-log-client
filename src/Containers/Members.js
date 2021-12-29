@@ -35,7 +35,7 @@ export default () => {
                         </Tooltip>]}
                     >
                         <List.Item.Meta
-                            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+                            avatar={<Avatar src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" />}
                             title={member.fullName}
                             description={member.email}
                         />

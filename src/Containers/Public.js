@@ -36,9 +36,9 @@ export default () => {
                                 renderItem={member => (
                                     <List.Item>
                                         <List.Item.Meta
-                                            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                                            title={member.fullName}
-                                            description={member.email}
+                                            avatar={<Avatar src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" />}
+                                            title={member.user.fullName}
+                                            description={`${member.user.email} - Trips: ${member.count}`}
                                         />
                                     </List.Item>
                                 )}
@@ -52,9 +52,9 @@ export default () => {
                                 renderItem={destination => (
                                     <List.Item>
                                         <List.Item.Meta
-                                            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+                                            avatar={<Avatar src="https://cdn-icons-png.flaticon.com/512/561/561726.png" />}
                                             title={destination.name}
-                                            description={destination.country}
+                                            description={`${destination.country} - Visited: ${destination.count}`}
                                         />
                                     </List.Item>
                                 )}
