@@ -37,7 +37,7 @@ export default () => {
                                     <List.Item>
                                         <List.Item.Meta
                                             avatar={<Avatar src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" />}
-                                            title={member.user.fullName}
+                                            title={member.user.fullname}
                                             description={`${member.user.email} - Trips: ${member.count}`}
                                         />
                                     </List.Item>

@@ -135,12 +135,13 @@ body {
 }
 
 #waves {
-  z-index: 5;
+  z-index: 99;
   position: fixed;
   top: 0;
   transform: scaleY(0.5) scaleX(1.2) translateY(-50%);
   -webkit-filter: drop-shadow(3px 3px 2px var(--dark));
   filter: drop-shadow(3px 3px 2px var(--dark));
+  pointer-events: none !important;
 }
 
 .quote {
@@ -163,7 +164,7 @@ header,
 
 .ant-layout-content {
   margin-top: 120px !important;
-  z-index: 999;
+  z-index: 10;
 }
 
 #container-with-background {
@@ -172,7 +173,7 @@ header,
 }
 
 header {
-  z-index: 10;
+  z-index: 100;
   width: 100%;
   padding: 0 !important;
   background-color: transparent !important;

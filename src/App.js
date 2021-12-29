@@ -12,6 +12,16 @@ import Header from './components/Header';
 import Dashboard from './containers/Dashboard';
 import { Layout } from 'antd';
 import './App.css';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 export default function App() {
   const isAuth = useSelector(state => state.user.isLoggedIn && state.user.jwt !== null)
