@@ -61,7 +61,7 @@ export default () => {
                         </Tooltip>]}
                     >
                         <List.Item.Meta
-                            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+                            avatar={<Avatar src="https://cdn-icons-png.flaticon.com/512/1452/1452378.png" />}
                             title={trip.tripName}
                             description={`${trip.destination} - ${moment(trip.tripDate, "YYYYMMDD").fromNow()}`}
                         />

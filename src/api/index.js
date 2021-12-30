@@ -24,6 +24,14 @@ export async function loadMostActiveuMembers() {
     return await getRequest('stats/active-users');
 }
 
+export async function loadTopCountries() {
+    return await getRequest('stats/top-countries');
+}
+
+export async function loadAvgTripsPerMonth() {
+    return await getRequest('stats/avg-trips-month');
+}
+
 export async function loadTrips() {
     return await getRequest('trips');
 }
