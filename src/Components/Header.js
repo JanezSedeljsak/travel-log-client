@@ -1,23 +1,34 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { Layout } from 'antd';
-import { Menu } from 'antd';
+import { loadTripSuggestion } from "../api";
+import { Modal, Menu, Layout, List, Avatar } from 'antd';
 import { actions } from '../redux/user';
 import Waves from "./Waves";
 
 export default ({ isAuth, isAdmin }) => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const [menuItem, setMenuItem]= useState('/');
 
-    function routeChange(route) {
+    const [menuItem, setMenuItem] = useState('/');
+    const [showSuggestionModal, setShowSuggestionModal] = useState(false);
+    const [tripSuggestions, setTripSuggestions] = useState([]);
+
+    const jwt = useSelector(state => state.user.jwt);
+
+    function closeModal() {
+        setShowSuggestionModal(false);
+    }
+
+    async function routeChange(route) {
         switch (route) {
             case 'logout':
                 dispatch(actions.logOut());
                 return;
             case 'get-suggestion':
-                alert("<<location suggestion popup>>");
+                const suggestions = await loadTripSuggestion(jwt);
+                setTripSuggestions(suggestions);
+                setShowSuggestionModal(true);
                 return;
             default:
                 setMenuItem(route);
@@ -58,7 +69,6 @@ export default ({ isAuth, isAdmin }) => {
     };
 
     function buildNav() {
-        console.log(isAdmin, admin.left);
         const leftNav = { ...(isAdmin ? admin.left : []), ...common.left, ...(isAuth ? auth.left : annyonymous.left) };
         const rightNav = { ...(isAdmin ? admin.right : []), ...common.right, ...(isAuth ? auth.right : annyonymous.right) };
 
@@ -85,10 +95,25 @@ export default ({ isAuth, isAdmin }) => {
 
     return (
         <>
-        <Layout.Header>
-            {buildNav()}
-        </Layout.Header>
-        <Waves/>
+            <Layout.Header>
+                {buildNav()}
+            </Layout.Header>
+            <Waves />
+            <Modal title="Destination suggestions" visible={showSuggestionModal} onOk={closeModal} onCancel={closeModal}>
+                <List
+                    itemLayout="horizontal"
+                    dataSource={tripSuggestions}
+                    renderItem={item => (
+                        <List.Item>
+                            <List.Item.Meta
+                                avatar={<Avatar src="https://cdn-icons-png.flaticon.com/512/1452/1452378.png" />}
+                                title={<a target="_blank" href={`http://images.google.com/images?q=${item.name}`}>{item.name}</a>}
+                                description={item.country}
+                            />
+                        </List.Item>
+                    )}
+                />
+            </Modal>
         </>
     );
 };

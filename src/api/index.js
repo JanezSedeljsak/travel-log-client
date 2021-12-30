@@ -48,6 +48,10 @@ export async function loadProfile(jwt) {
     return await getRequest('my-profile', jwt);
 }
 
+export async function loadTripSuggestion(jwt) {
+    return await getRequest('trip-suggestion', jwt);
+}
+
 export async function login(credentials) {
     const response = await axios({
         method: 'post',
