@@ -87,3 +87,16 @@ export async function profileUpdate(credentials, jwt) {
 
     return response;
 }
+
+export async function deleteTrip(idx, jwt) {
+    const response = await axios({
+        method: 'delete',
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            ...(jwt ? {'Authorization': `Bearer ${jwt}`} : {})
+        },
+        url: `${_API_}/api/v1/trips/${idx}`
+    });
+
+    return response;
+}

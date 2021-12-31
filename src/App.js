@@ -13,6 +13,7 @@ import Dashboard from './containers/Dashboard';
 import { Layout } from 'antd';
 import './App.css';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { ToastProvider } from 'react-toast-notifications';
 
 ChartJS.register(
   CategoryScale,
@@ -45,23 +46,25 @@ export default function App() {
   )
 
   return (
-    <Layout>
-      <Header isAuth={isAuth} isAdmin={isAdmin} />
-      <Switch>
-        <Route path='/' component={Public} exact />
-        {['/login', '/register'].includes(location.pathname) && <div id="container-with-background">
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-        </div>}
-        <Layout.Content>
-          <Route path='/trips' component={Trips} />
-          <Route path="/members" component={Members} />
-          <PrivateRoute path='/create/trip' component={TripForm} />
-          <PrivateRoute path='/edit/trip/:id' component={TripForm} />
-          <PrivateRoute path='/profile' component={ProfileForm} />
-          <AdminRoute path="/dashboard" component={Dashboard} />
-        </Layout.Content>
-      </Switch>
-    </Layout>
+    <ToastProvider>
+      <Layout>
+        <Header isAuth={isAuth} isAdmin={isAdmin} />
+        <Switch>
+          <Route path='/' component={Public} exact />
+          {['/login', '/register'].includes(location.pathname) && <div id="container-with-background">
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+          </div>}
+          <Layout.Content>
+            <Route path='/trips' component={Trips} />
+            <Route path="/members" component={Members} />
+            <PrivateRoute path='/create/trip' component={TripForm} />
+            <PrivateRoute path='/edit/trip/:id' component={TripForm} />
+            <PrivateRoute path='/profile' component={ProfileForm} />
+            <AdminRoute path="/dashboard" component={Dashboard} />
+          </Layout.Content>
+        </Switch>
+      </Layout>
+    </ToastProvider>
   )
 }

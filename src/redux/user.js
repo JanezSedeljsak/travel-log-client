@@ -7,11 +7,11 @@ import {
 const SET_USER = 'redux/users/SET_USER'
 const LOG_OUT = 'redux/users/LOG_OUT'
 const SIGN_IN = 'redux/users/SIGN_IN'
-const SIGN_UP = 'redux/users/SIGN_UP'
+const REGISTER = 'redux/users/REGISTER'
 const PROFILE_UPDATE = 'redux/users/PROFILE_UPDATE'
 const PROFILE_UPDATE_COMPLETE = 'redux/users/PROFILE_UPDATE_COMPLETE'
 const PROFILE_UPDATE_ERROR = 'redux/users/PROFILE_UPDATE_ERROR'
-const SIGN_UP_COMPLETE = 'redux/users/SIGN_UP_COMPLETE'
+const REGISTER_COMPLETE = 'redux/users/REGISTER_COMPLETE'
 const SET_LOGIN_ERROR = 'redux/users/SET_LOGIN_ERROR'
 const SET_REGISTER_ERROR = 'redux/users/SET_REGISTER_ERROR'
 
@@ -20,10 +20,11 @@ const initialState = {
     isLoggedIn: false,
     isFetching: false,
     jwt: null,
+    userId: null,
     isAdmin: false,
     loginError: null,
     registerError: null,
-    profileUpdateError: null
+    profileUpdateError: null,
 }
 
 const currentUser = (state = initialState, action) => {
@@ -36,6 +37,7 @@ const currentUser = (state = initialState, action) => {
                 isFetching: false,
                 jwt: action.payload.jwt,
                 isAdmin: action.payload.isAdmin,
+                userId: action.payload.userId,
                 loginError: null
             }
         case LOG_OUT:
@@ -46,13 +48,13 @@ const currentUser = (state = initialState, action) => {
                 isFetching: true,
                 loginError: null
             }
-        case SIGN_UP:
+        case REGISTER:
             return {
                 ...state,
                 isFetching: true,
                 registerError: null
             }
-        case SIGN_UP_COMPLETE:
+        case REGISTER_COMPLETE:
             return {
                 ...state,
                 isFetching: false,
@@ -125,19 +127,20 @@ const login = user => async dispatch => {
         dispatch(setUser({
             email: user.email,
             jwt: response.data.token,
-            isAdmin: response.data.isAdmin
+            isAdmin: response.data.isAdmin,
+            userId: response.data.userId
         }));
     }
 }
 
 const register = user => async dispatch => {
     dispatch({
-        type: SIGN_UP
+        type: REGISTER
     });
 
     const response = await fetchRegister(user);
     if (response) {
-        dispatch({ type: SIGN_UP_COMPLETE })
+        dispatch({ type: REGISTER_COMPLETE })
         dispatch(login(user))
     }
 }

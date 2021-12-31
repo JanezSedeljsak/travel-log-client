@@ -190,6 +190,10 @@ header {
   box-shadow: 0 4px 4px -2px var(--dark);
 }
 
+.ant-list-item-action button {
+  margin: 5px;
+}
+
 ul:not(.ant-list-items) {
   width: 70% !important;
   background: transparent !important;
