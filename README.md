@@ -16,6 +16,10 @@ $ npm i
 $ npm run start
 ```
 
+## Credits
+
+The original project skeleton is from [yum72 - React-Redux-Auth-Boilerplate](https://github.com/yum72/React-Redux-Auth-Boilerplate)
+
 ## License
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
