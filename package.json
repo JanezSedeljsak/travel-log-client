@@ -1,6 +1,6 @@
 {
   "name": "TravelLog",
-  "homepage": "http://janezsedeljsak.github.io/travel-log-service-client",
+  "homepage": "http://janezsedeljsak.github.io/travel-log-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

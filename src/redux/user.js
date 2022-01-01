@@ -122,40 +122,53 @@ const setRegisterError = error => {
 const login = user => async dispatch => {
     dispatch({ type: SIGN_IN });
 
-    const response = await fetchLogin(user);
-    if (response) {
-        dispatch(setUser({
-            email: user.email,
-            jwt: response.data.token,
-            isAdmin: response.data.isAdmin,
-            userId: response.data.userId
-        }));
+    try {
+        const response = await fetchLogin(user);
+        if (response) {
+            dispatch(setUser({
+                email: user.email,
+                jwt: response.data.token,
+                isAdmin: response.data.isAdmin,
+                userId: response.data.userId
+            }));
+        } else {
+            dispatch(setLoginError("Failed to login"));
+        }
+    } catch (err) {
+        dispatch(setLoginError("Failed to login"));
     }
 }
 
 const register = user => async dispatch => {
-    dispatch({
-        type: REGISTER
-    });
+    dispatch({ type: REGISTER });
 
-    const response = await fetchRegister(user);
-    if (response) {
-        dispatch({ type: REGISTER_COMPLETE })
-        dispatch(login(user))
+    try {
+        const response = await fetchRegister(user);
+        if (response) {
+            dispatch({ type: REGISTER_COMPLETE })
+            dispatch(login(user))
+        } else {
+            dispatch(setRegisterError("Failed to register"));
+        }
+    } catch (err) {
+        dispatch(setRegisterError("Failed to register"));
     }
 }
 
 const updatePorfile = (user, jwt) => async dispatch => {
-    dispatch({
-        type: PROFILE_UPDATE
-    });
+    dispatch({ type: PROFILE_UPDATE });
 
-    const reponse = await fetchProfileUpdate(user, jwt);
-    if (reponse) {
-        dispatch({ type: PROFILE_UPDATE_COMPLETE, payload: { email: user.email } });
-    } else {
-        dispatch({ type: PROFILE_UPDATE_ERROR })
+    try {
+        const reponse = await fetchProfileUpdate(user, jwt);
+        if (reponse) {
+            dispatch({ type: PROFILE_UPDATE_COMPLETE, payload: { email: user.email } });
+        } else {
+            dispatch({ type: PROFILE_UPDATE_ERROR })
+        }
+    } catch (err) {
+        dispatch(setRegisterError("Failed to register"));
     }
+
 }
 
 const logOut = () => {
