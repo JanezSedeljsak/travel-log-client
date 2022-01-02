@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/travel-log-client/static/css/main.f20be030.chunk.css",
-    "main.js": "/travel-log-client/static/js/main.503c6415.chunk.js",
-    "main.js.map": "/travel-log-client/static/js/main.503c6415.chunk.js.map",
+    "main.js": "/travel-log-client/static/js/main.3023c6b2.chunk.js",
+    "main.js.map": "/travel-log-client/static/js/main.3023c6b2.chunk.js.map",
     "runtime-main.js": "/travel-log-client/static/js/runtime-main.4d28a3f6.js",
     "runtime-main.js.map": "/travel-log-client/static/js/runtime-main.4d28a3f6.js.map",
     "static/css/2.8bd6500c.chunk.css": "/travel-log-client/static/css/2.8bd6500c.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.8bd6500c.chunk.css",
     "static/js/2.a2e28d11.chunk.js",
     "static/css/main.f20be030.chunk.css",
-    "static/js/main.503c6415.chunk.js"
+    "static/js/main.3023c6b2.chunk.js"
   ]
 }
