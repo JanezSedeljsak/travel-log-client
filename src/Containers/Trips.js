@@ -101,7 +101,7 @@ export default () => {
     }
 
     function openEdit(idx) {
-        history.push(`/edit/trip/${idx}`);
+        history.push(`/travel-log-client/edit/trip/${idx}`);
     }
 
     async function removeRecord(idx, jwt) {

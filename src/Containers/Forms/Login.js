@@ -16,7 +16,7 @@ export default () => {
         dispatch(actions.logOut()) //reset state and clear any errors
     }, [dispatch])
 
-    if (isLoggedIn) return <Redirect to="/" />
+    if (isLoggedIn) return <Redirect to="/travel-log-client/" />
 
     return (
         <div className="basic-form-container">

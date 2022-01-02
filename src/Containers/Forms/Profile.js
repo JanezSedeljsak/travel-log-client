@@ -60,10 +60,10 @@ export default () => {
                 </Select>
             </Form.Item>
             <Form.Item label="Birth date" name="birthDate">
-                <span>{moment(profileData.birthDate).format("DD.MM.yyyy")}</span>
+                <span>{moment(new Date(profileData.birthdate)).format("DD.MM.yyyy")}</span>
             </Form.Item>
             <Form.Item label="Member since" name="createdAt" disabled>
-                <span>{moment(profileData.createdAt).format("DD.MM.yyyy")}</span>
+                <span>{moment(new Date(profileData.createdAt)).format("DD.MM.yyyy")}</span>
             </Form.Item>
             <Form.Item
                 label="New password"

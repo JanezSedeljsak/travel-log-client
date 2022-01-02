@@ -33,7 +33,7 @@ export default function App() {
     <Route {...rest} render={(props) => (
       isAuth === true
         ? <Component {...props} />
-        : <Redirect to='/login' />
+        : <Redirect to='/travel-log-client/login' />
     )} />
   )
 
@@ -41,7 +41,7 @@ export default function App() {
     <Route {...rest} render={(props) => (
       (isAuth && isAdmin)
         ? <Component {...props} />
-        : <Redirect to='/login' />
+        : <Redirect to='/travel-log-client/login' />
     )} />
   )
 
@@ -50,18 +50,18 @@ export default function App() {
       <Layout>
         <Header isAuth={isAuth} isAdmin={isAdmin} />
         <Switch>
-          <Route path='/' component={Public} exact />
-          {['/login', '/register'].includes(location.pathname) && <div id="container-with-background">
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
+          <Route path='/travel-log-client/' component={Public} exact />
+          {['/travel-log-client/login', '/travel-log-client/register'].includes(location.pathname) && <div id="container-with-background">
+            <Route path="/travel-log-client/login" component={Login} />
+            <Route path="/travel-log-client/register" component={Register} />
           </div>}
           <Layout.Content>
-            <Route path='/trips' component={Trips} />
-            <Route path="/members" component={Members} />
-            <PrivateRoute path='/create/trip' component={TripForm} />
-            <PrivateRoute path='/edit/trip/:id' component={TripForm} />
-            <PrivateRoute path='/profile' component={ProfileForm} />
-            <AdminRoute path="/dashboard" component={Dashboard} />
+            <Route path='/travel-log-client/trips' component={Trips} />
+            <Route path="/travel-log-client/members" component={Members} />
+            <PrivateRoute path='/travel-log-client/create/trip' component={TripForm} />
+            <PrivateRoute path='/travel-log-client/edit/trip/:id' component={TripForm} />
+            <PrivateRoute path='/travel-log-client/profile' component={ProfileForm} />
+            <AdminRoute path="/travel-log-client/dashboard" component={Dashboard} />
           </Layout.Content>
         </Switch>
       </Layout>

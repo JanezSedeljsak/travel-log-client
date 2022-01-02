@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // if development mode use another separate server for api
-const _API_ = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') ? 'http://localhost:5071' : 'https://travel-log.azurewebsites.net';
+const _API_ = 'https://travel-log.azurewebsites.net';
 
 const getRequest = async (route, jwt = null, alt = []) => {
     const response = await axios({

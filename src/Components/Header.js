@@ -32,7 +32,7 @@ export default ({ isAuth, isAdmin }) => {
                 return;
             default:
                 setMenuItem(route);
-                history.push(`/${route}`);
+                history.push(`/travel-log-client/${route}`);
                 return;
         }
     }
